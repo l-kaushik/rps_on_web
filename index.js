@@ -35,12 +35,18 @@ function game(){
     }
 }
 
+function getPlayerChoice(){
+    let playerSelection = prompt("Enter your selection: ").toLowerCase();
+playerSelection = playerSelection[0].toUpperCase() + playerSelection.slice(1);
+
+    return playerSelection;
+}
+
 var playerScore = 0, computerScore = 0;
 
 let computerSelection = getComputerChoice();
+let playerSelection = getPlayerChoice();
 
-let playerSelection = prompt("Enter your selection: ").toLowerCase();
-playerSelection = playerSelection[0].toUpperCase() + playerSelection.slice(1);
 
 if(playerSelection != "Rock" && playerSelection != "Paper" && playerSelection != "Scissors"){
     console.log(`Invalid input "${playerSelection}", must be "rock" or "paper" or "scissors"`);
