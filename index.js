@@ -50,12 +50,12 @@ function getPlayerChoice() {
     return playerSelection;
 }
 
+
+// Main game program starts from here
+
 var playerScore = 0, computerScore = 0;
 
-// let computerSelection = getComputerChoice();
-// let playerSelection = getPlayerChoice();
-
-game()
+game();
 
 if (computerScore == playerScore) {
     console.log(`both got same points ${computerScore}`);
