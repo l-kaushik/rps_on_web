@@ -28,39 +28,11 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game(playerResponse) {
-    // for (let i = 1; i <= 5; i++) {
-        console.log(`Round ${i}: `);
-        console.log(playRound(playerResponse, getComputerChoice()));
         
-        if (computerScore == playerScore) {
-            console.log(`both got same points ${computerScore}`);
-        }
-        else if (playerScore > computerScore) {
-            console.log(`Player wins by ${playerScore - computerScore}`);
-        }
-        else {
-            console.log(`Computer wins by ${computerScore - playerScore}`);
-        }
+        return (playRound(playerResponse, getComputerChoice()));
         
-        // }
+
 }
-
-// function getPlayerChoice() {
-//     let playerSelection = 
-    // playerSelection = playerSelection[0].toUpperCase() + playerSelection.slice(1);
-
-    // while (playerSelection != "Rock" && playerSelection != "Paper" && playerSelection != "Scissors") {
-
-    //     console.log(`Invalid input "${playerSelection}", must be "rock" or "paper" or "scissors"`);
-
-    //     playerSelection = prompt("Enter your selection: ");
-    //     playerSelection = playerSelection.toLowerCase();
-    //     playerSelection = playerSelection[0].toUpperCase() + playerSelection.slice(1);
-   
-    // }
-    // return playerSelection;
-// }
-
 
 // Main game program starts from here
 
@@ -70,12 +42,53 @@ var playerScore = 0, computerScore = 0;
 
 
 
-// selecting the button
 
+
+const round = document.querySelector(".round");
 const buttons = document.querySelectorAll(".btn");
+const gameStatus = document.querySelector(".gameStatus");
+let round_number = 1
 
 buttons.forEach((button) =>{
-    button.addEventListener("click",(e)=>{
-       game(e.target.textContent); 
-    });
-})
+    button.addEventListener("click", handleButtonClick);
+});
+
+
+function handleButtonClick(e){
+
+    gameStatus.textContent = "playing...";
+    round.textContent = `round ${round_number}`
+    console.log(game(e.target.textContent)); 
+    round_number++;
+
+    if (round_number == 6){
+        gameStatus.textContent = "finished";
+        displayMessage("you have finished the game, click restart to play again");
+        buttons.forEach((button) => {
+            button.removeEventListener("click", handleButtonClick);
+        });
+
+        if (computerScore == playerScore) {
+            console.log(`both got same points ${computerScore}`);
+        }
+        else if (playerScore > computerScore) {
+            console.log(`Player wins by ${playerScore - computerScore}`);
+        }
+        else {
+            console.log(`Computer wins by ${computerScore - playerScore}`);
+        }
+    }
+
+}
+
+
+
+function displayMessage(message){
+    const messageElement = document.createElement("div");
+    const restartButton = document.createElement("button");
+    restartButton.textContent = "restart";
+    messageElement.textContent = message;
+
+    document.body.appendChild(restartButton)    
+    document.body.appendChild(messageElement);
+}
