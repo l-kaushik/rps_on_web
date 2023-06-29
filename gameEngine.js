@@ -28,10 +28,8 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game(playerResponse) {
-        
-        return (playRound(playerResponse, getComputerChoice()));
-        
 
+    return (playRound(playerResponse, getComputerChoice()));
 }
 
 // Main game program starts from here
@@ -39,14 +37,14 @@ function game(playerResponse) {
 var playerScore = 0, computerScore = 0;
 
 // game();
-function handleButtonClick(e){
-
+function handleButtonClick(e) {
+    
     gameStatus.textContent = "playing...";
     round.textContent = `round ${round_number}`
-    console.log(game(e.target.textContent)); 
+    console.log(game(e.target.textContent));
     round_number++;
 
-    if (round_number == 6){
+    if (round_number == 6) {
         gameStatus.textContent = "finished";
         displayMessage("you have finished the game, click restart to play again");
         buttons.forEach((button) => {
@@ -66,26 +64,45 @@ function handleButtonClick(e){
 
 }
 
-function displayMessage(message){
+function displayMessage(message) {
     const messageElement = document.createElement("div");
     const restartButton = document.createElement("button");
     restartButton.textContent = "restart";
-    
+
     messageElement.textContent = message;
-    
-    document.body.appendChild(restartButton)    
-    restartButton.classList.add("resetBtn") 
+
+    document.body.appendChild(restartButton)
+    restartButton.classList.add("resetBtn")
     document.body.appendChild(messageElement);
+
+    restartGame(messageElement, restartButton);
+
 }
 
+function restartGame(messageElement, restartButton) {
 
+    // if !(round) return round.
+    restartButton.addEventListener("click", () => {
+        // round.remove()
+        round.textContent = "";
+        round_number = 1;
+        gameStatus.textContent = "click on button to start the game";
+
+        buttons.forEach((button) => {
+            button.addEventListener("click", handleButtonClick);
+        });
+
+        messageElement.remove();
+        restartButton.remove();
+
+    });
+}
 
 const round = document.querySelector(".round");
 const buttons = document.querySelectorAll(".btn");
 const gameStatus = document.querySelector(".gameStatus");
-let round_number = 1
+let round_number = 1;
 
-buttons.forEach((button) =>{
+buttons.forEach((button) => {
     button.addEventListener("click", handleButtonClick);
 });
-
