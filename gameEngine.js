@@ -39,21 +39,6 @@ function game(playerResponse) {
 var playerScore = 0, computerScore = 0;
 
 // game();
-
-
-
-
-
-const round = document.querySelector(".round");
-const buttons = document.querySelectorAll(".btn");
-const gameStatus = document.querySelector(".gameStatus");
-let round_number = 1
-
-buttons.forEach((button) =>{
-    button.addEventListener("click", handleButtonClick);
-});
-
-
 function handleButtonClick(e){
 
     gameStatus.textContent = "playing...";
@@ -81,14 +66,26 @@ function handleButtonClick(e){
 
 }
 
-
-
 function displayMessage(message){
     const messageElement = document.createElement("div");
     const restartButton = document.createElement("button");
     restartButton.textContent = "restart";
+    
     messageElement.textContent = message;
-
+    
     document.body.appendChild(restartButton)    
+    restartButton.classList.add("resetBtn") 
     document.body.appendChild(messageElement);
 }
+
+
+
+const round = document.querySelector(".round");
+const buttons = document.querySelectorAll(".btn");
+const gameStatus = document.querySelector(".gameStatus");
+let round_number = 1
+
+buttons.forEach((button) =>{
+    button.addEventListener("click", handleButtonClick);
+});
+
