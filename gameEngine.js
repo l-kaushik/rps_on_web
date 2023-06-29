@@ -72,19 +72,21 @@ function restartGame(messageElement, restartButton) {
 
     // if !(round) return round.
     restartButton.addEventListener("click", () => {
-        // round.remove()
-        round.textContent = "";
-        pScore.textContent = "";
-        cScore.textContent = "";
-        round_number = 1;
-        gameStatus.textContent = "click on button to start the game";
+        location.reload();
+        // round.textContent = "";
+        // pScore.textContent = "";
+        // cScore.textContent = "";
+        // playerScore = 0;
+        // computerScore = 0;
+        // round_number = 1;
+        // gameStatus.textContent = "click on button to start the game";
 
-        buttons.forEach((button) => {
-            button.addEventListener("click", handleButtonClick);
-        });
+        // buttons.forEach((button) => {
+        //     button.addEventListener("click", handleButtonClick);
+        // });
 
-        messageElement.remove();
-        restartButton.remove();
+        // messageElement.remove();
+        // restartButton.remove();
 
     });
 }
