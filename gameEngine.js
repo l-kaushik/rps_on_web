@@ -35,20 +35,22 @@ function handleButtonClick(e) {
     pScore.textContent = `Player Score:- ${playerScore}`;
     cScore.textContent = `Computer Score:- ${computerScore}`;
 
-    if (round_number == 6) {
-        displayMessage("you have finished the game, click restart to play again");
+    if (playerScore == 5 || computerScore == 5) {
         buttons.forEach((button) => {
             button.removeEventListener("click", handleButtonClick);
         });
 
         if(computerScore == playerScore) {
             gameStatus.textContent = `both got same points ${computerScore}`;
+            displayMessage("It's a Tie!");
         }
         else if (playerScore > computerScore) {
             gameStatus.textContent = `Player wins by ${playerScore - computerScore}`;
-        }
+            displayMessage("Congratulations! You win the game!");
+        }   
         else {
             gameStatus.textContent = `Computer wins by ${computerScore - playerScore}`;
+            displayMessage("Oops! Computer wins the game. Better luck next time!");
         }
     }
 }
