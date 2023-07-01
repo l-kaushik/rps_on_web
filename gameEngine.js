@@ -30,10 +30,8 @@ function playRound(playerSelection, computerSelection) {
 function handleButtonClick(e) {
     
     instruction.remove();
-    round.textContent = `round ${round_number}`;
     gameStatus.textContent = playRound(e.target.textContent, getComputerChoice());
     gameStatus.style.whiteSpace = "pre-line";
-    round_number++;
     pScore.textContent = `Player Score:- ${playerScore}`;
     cScore.textContent = `Computer Score:- ${computerScore}`;
 
@@ -74,15 +72,12 @@ function displayMessage(message) {
 
 function restartGame(messageElement, restartButton) {
 
-    // if !(round) return round.
     restartButton.addEventListener("click", () => {
         location.reload();
-        // round.textContent = "";
         // pScore.textContent = "";
         // cScore.textContent = "";
         // playerScore = 0;
         // computerScore = 0;
-        // round_number = 1;
         // gameStatus.textContent = "click on button to start the game";
 
         // buttons.forEach((button) => {
@@ -102,13 +97,10 @@ let playerScore = 0, computerScore = 0;
 
 const pScore = document.querySelector(".playerScore");
 const cScore = document.querySelector('.compScore');
-const round = document.querySelector(".round");
-const roundResult = document.querySelector(".roundResult")
 const buttons = document.querySelectorAll(".btn");
 const gameStatus = document.querySelector(".gameStatus h3");
 const instruction = document.querySelector(".gameStatus h4");
 const main = document.querySelector(".main");
-let round_number = 1;
 
 buttons.forEach((button) => {
     button.addEventListener("click", handleButtonClick);
