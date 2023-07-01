@@ -15,22 +15,24 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
 
     if (playerSelection == computerSelection) {
-        return `Both choose ${playerSelection}, so its a tie`;
+        return `Both choose ${playerSelection}\nits a tie!`;
     }
     else if ((playerSelection == "Rock" && computerSelection == "Scissors") || (playerSelection == "Scissors" && computerSelection == "Paper") || (playerSelection == "Paper" && computerSelection == "Rock")) {
         playerScore += 1;
-        return `${playerSelection} beats ${computerSelection} and player got a point`;
+        return `${playerSelection} beats ${computerSelection}\nplayer got a point`;
     }
     else {
         computerScore += 1;
-        return `${computerSelection} beats ${playerSelection} and computer got a point`;
+        return `${computerSelection} beats ${playerSelection}\ncomputer got a point`;
     }
 }
 
 function handleButtonClick(e) {
     
-   round.textContent = `round ${round_number}`;
+    instruction.remove();
+    round.textContent = `round ${round_number}`;
     gameStatus.textContent = playRound(e.target.textContent, getComputerChoice());
+    gameStatus.style.whiteSpace = "pre-line";
     round_number++;
     pScore.textContent = `Player Score:- ${playerScore}`;
     cScore.textContent = `Computer Score:- ${computerScore}`;
@@ -45,11 +47,11 @@ function handleButtonClick(e) {
             displayMessage("It's a Tie!");
         }
         else if (playerScore > computerScore) {
-            gameStatus.textContent = `Player wins by ${playerScore - computerScore}`;
+            gameStatus.textContent = `Player wins by ${playerScore - computerScore} points`;
             displayMessage("Congratulations! You win the game!");
         }   
         else {
-            gameStatus.textContent = `Computer wins by ${computerScore - playerScore}`;
+            gameStatus.textContent = `Computer wins by ${computerScore - playerScore} points`;
             displayMessage("Oops! Computer wins the game. Better luck next time!");
         }
     }
@@ -62,9 +64,9 @@ function displayMessage(message) {
 
     messageElement.textContent = message;
 
-    document.body.appendChild(restartButton)
+    main.appendChild(restartButton)
     restartButton.classList.add("resetBtn")
-    document.body.appendChild(messageElement);
+    main.appendChild(messageElement);
 
     restartGame(messageElement, restartButton);
 
@@ -103,7 +105,9 @@ const cScore = document.querySelector('.compScore');
 const round = document.querySelector(".round");
 const roundResult = document.querySelector(".roundResult")
 const buttons = document.querySelectorAll(".btn");
-const gameStatus = document.querySelector(".gameStatus");
+const gameStatus = document.querySelector(".gameStatus h3");
+const instruction = document.querySelector(".gameStatus h4");
+const main = document.querySelector(".main");
 let round_number = 1;
 
 buttons.forEach((button) => {
