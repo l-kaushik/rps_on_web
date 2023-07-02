@@ -76,19 +76,6 @@ function restartGame(messageElement, restartButton) {
 
     restartButton.addEventListener("click", () => {
         location.reload();
-        // pScore.textContent = "";
-        // cScore.textContent = "";
-        // playerScore = 0;
-        // computerScore = 0;
-        // gameStatus.textContent = "click on button to start the game";
-
-        // buttons.forEach((button) => {
-        //     button.addEventListener("click", handleButtonClick);
-        // });
-
-        // messageElement.remove();
-        // restartButton.remove();
-
     });
 }
 

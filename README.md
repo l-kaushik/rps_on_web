@@ -1,3 +1,3 @@
 # rps_on_web
 
-Currently the game can only be played using console.
+Well currently the project is looking quite simple, so I would be grateful if you give me some suggestions to improve it. 
