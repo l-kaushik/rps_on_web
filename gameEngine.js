@@ -30,7 +30,7 @@ function playRound(playerSelection, computerSelection) {
 function handleButtonClick(e) {
     
     instruction.remove();
-    gameStatus.textContent = playRound(e.target.textContent, getComputerChoice());
+    gameStatus.textContent = playRound((e.target).alt, getComputerChoice());
     gameStatus.style.whiteSpace = "pre-line";
     pScore.textContent = `Player Score:- ${playerScore}`;
     cScore.textContent = `Computer Score:- ${computerScore}`;
@@ -46,11 +46,11 @@ function handleButtonClick(e) {
         }
         else if (playerScore > computerScore) {
             gameStatus.textContent = `Player wins by ${playerScore - computerScore} points`;
-            displayMessage("Congratulations! You win the game!");
+            displayMessage("You Won!");
         }   
         else {
             gameStatus.textContent = `Computer wins by ${computerScore - playerScore} points`;
-            displayMessage("Oops! Computer wins the game. Better luck next time!");
+            displayMessage("You lose!");
         }
     }
 }
@@ -58,15 +58,17 @@ function handleButtonClick(e) {
 function displayMessage(message) {
     const messageElement = document.createElement("div");
     const restartButton = document.createElement("button");
-    restartButton.textContent = "restart";
-
+    restartButton.textContent = "Play again";
+    
     messageElement.textContent = message;
-
-    main.appendChild(restartButton)
-    restartButton.classList.add("resetBtn")
-    main.appendChild(messageElement);
-
+    
+    dialogDiv.appendChild(messageElement);
+    dialogDiv.appendChild(restartButton);
+    restartButton.classList.add("resetBtn");
+    messageElement.classList.add("endMessage");
+    
     restartGame(messageElement, restartButton);
+    modal.showModal();
 
 }
 
@@ -101,6 +103,8 @@ const buttons = document.querySelectorAll(".btn");
 const gameStatus = document.querySelector(".gameStatus h3");
 const instruction = document.querySelector(".gameStatus h4");
 const main = document.querySelector(".main");
+const modal = document.querySelector("[data-modal]");
+const dialogDiv = document.querySelector("[data-modal] div");
 
 buttons.forEach((button) => {
     button.addEventListener("click", handleButtonClick);
